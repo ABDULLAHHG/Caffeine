@@ -8,7 +8,9 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.caffeine.R
 import kotlinx.coroutines.delay
@@ -45,15 +48,17 @@ fun CoffeeBeansLevelAnimation(
         visible = isVisible,
         enter = slideInVertically(
             animationSpec = tween(durationMillis = 800)
-        ) { fullHeight -> if (slideDirection) (fullHeight) * -1 else (fullHeight) } +
-                fadeIn(animationSpec = tween(durationMillis = 800)) + if (slideDirection) scaleIn(initialScale = 2f) else scaleIn(initialScale = 0.5f),
+        ) { fullHeight -> if (slideDirection) (fullHeight)/-2 else (fullHeight)} +
+                fadeIn(animationSpec = tween(durationMillis = 800)) + if (slideDirection) scaleIn(initialScale = 0.5f) else scaleIn(initialScale = 3f),
         exit = fadeOut(),
         modifier = modifier
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .zIndex(-999f),
+                .fillMaxHeight()
+                .zIndex(-999f)
+                .offset(y = if(slideDirection) 0.dp else -200.dp),
             contentAlignment = Alignment.Center
         ) {
             Image(

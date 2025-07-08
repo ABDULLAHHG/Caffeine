@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -80,7 +82,7 @@ fun CustomizedCaffe(
         item {
 
             Box() {
-                Box() {
+                Box(modifier = Modifier.matchParentSize()) {
                     CoffeeBeansLevelAnimation(selectedBeansLevel)
                 }
                 Column() {

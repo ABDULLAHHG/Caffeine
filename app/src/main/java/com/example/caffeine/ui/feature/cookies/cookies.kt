@@ -60,33 +60,9 @@ fun Cookies() {
         ),
         modifier = Modifier.fillMaxWidth()
     ) { currentPage ->
-
-        val pageOffset =
-            (currentPage - pagerState.currentPage) + pagerState.currentPageOffsetFraction
-
-        val clampedOffset = pageOffset.coerceIn(-1f, 1f)
-
-        val scale = lerp(0.80f, 1f, 1f - abs(clampedOffset))
-
-        val animatedScale by animateFloatAsState(
-            targetValue = scale,
-            animationSpec = tween(durationMillis = 300, easing = LinearOutSlowInEasing),
-            label = "ScaleAnim"
-        )
-
-        val translationOfX = lerp(300f, 0f, 1f - clampedOffset)
-        val translationOfY = lerp(100f, 0f, 1f - abs(clampedOffset))
-
         CookiesCard(
             painter = painterResource(id = cookiesType.entries[currentPage].value),
-            modifier = Modifier
-                .graphicsLayer {
-                    scaleX = animatedScale
-                    scaleY = animatedScale
-                    translationX = -translationOfX * clampedOffset
-                    translationY = -translationOfY * clampedOffset
-                }
-                .zIndex(1 - abs(clampedOffset)),
+            modifier = Modifier,
             onClick = {
                 navController.navigate(Route.CookieDetail(cookiesType.entries[currentPage]))
             }
