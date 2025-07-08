@@ -45,8 +45,8 @@ fun CoffeeBeansLevelAnimation(
         visible = isVisible,
         enter = slideInVertically(
             animationSpec = tween(durationMillis = 800)
-        ) { fullHeight -> if (slideDirection) (fullHeight) * -1 else (fullHeight/2) } +
-                fadeIn(animationSpec = tween(durationMillis = 800)) + if (slideDirection) scaleIn(initialScale = 0.5f) else scaleIn(initialScale = 1f),
+        ) { fullHeight -> if (slideDirection) (fullHeight) * -1 else (fullHeight) } +
+                fadeIn(animationSpec = tween(durationMillis = 800)) + if (slideDirection) scaleIn(initialScale = 2f) else scaleIn(initialScale = 0.5f),
         exit = fadeOut(),
         modifier = modifier
     ) {

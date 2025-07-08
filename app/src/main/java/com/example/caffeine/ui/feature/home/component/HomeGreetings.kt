@@ -6,6 +6,7 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.caffeine.R
 import com.example.caffeine.designSystem.theme.snigletFamily
@@ -42,7 +44,7 @@ fun HomeGreetings(modifier: Modifier = Modifier) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_star),
             contentDescription = null,
-            modifier = Modifier
+            modifier = Modifier.offset(y = (-27).dp)
                 .align(Alignment.CenterStart),
             tint = animateColor,
 

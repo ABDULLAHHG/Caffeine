@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -79,24 +78,31 @@ fun CustomizedCaffe(
     ) {
 
         item {
-            Column() {
-                CustomizedCaffeUpBar(
-                    modifier = Modifier
-                        .padding(bottom = 77.dp),
-                    onClick = { navController.navigate(Route.ChooseCaffeTypeScreen) },
-                    label = caffeType
-                )
-            }
 
-            CaffeCup(
-                cupSize = animatedCupSize,
-                logoSize = animateLogoSize,
-                selectedBeansLevel = selectedBeansLevel,
-                modifier = Modifier
-                    .height(300.dp)
-                    .fillMaxWidth(),
-                cupSizeInML = cupSizeInML
-            )
+            Box() {
+                Box() {
+                    CoffeeBeansLevelAnimation(selectedBeansLevel)
+                }
+                Column() {
+
+                    CustomizedCaffeUpBar(
+                        modifier = Modifier
+                            .padding(bottom = 77.dp),
+                        onClick = { navController.navigate(Route.ChooseCaffeTypeScreen) },
+                        label = caffeType
+                    )
+                    CaffeCup(
+                        cupSize = animatedCupSize,
+                        logoSize = animateLogoSize,
+                        modifier = Modifier
+                            .height(300.dp)
+                            .fillMaxWidth(),
+                        cupSizeInML = cupSizeInML
+                    )
+
+                }
+
+            }
             Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
 
 
@@ -141,23 +147,23 @@ fun CustomizedCaffe(
                 )
             }
         }
-            item(){
+        item() {
 
-                ChooseCaffeTypeBottomButton(
-                    modifier = Modifier
-                        .navigationBarsPadding()
-                        .padding(vertical = 32.dp)
-                ) {
-                    navController.navigate(
-                        Route.CoffeeLoadingScreen(
-                            animatedCupSize.width.toInt(),
-                            animatedCupSize.height.toInt(),
-                            cupSizeInML,
-                            animateLogoSize.width.toInt(),
-                            animateLogoSize.height.toInt()
-                        )
+            ChooseCaffeTypeBottomButton(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .padding(vertical = 32.dp)
+            ) {
+                navController.navigate(
+                    Route.CoffeeLoadingScreen(
+                        animatedCupSize.width.toInt(),
+                        animatedCupSize.height.toInt(),
+                        cupSizeInML,
+                        animateLogoSize.width.toInt(),
+                        animateLogoSize.height.toInt()
                     )
-                }
+                )
+            }
         }
     }
 
@@ -170,15 +176,10 @@ fun CaffeCup(
     cupSize: Size,
     logoSize: Size,
     cupSizeInML: String,
-    selectedBeansLevel: CoffeeBeansLevel,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier) {
-        Box(Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()) {
-            CoffeeBeansLevelAnimation(selectedBeansLevel)
-        }
+
         CaffeRegularText(
             cupSizeInML,
             fontSize = 14,
