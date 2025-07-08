@@ -3,6 +3,7 @@ package com.example.caffeine.ui.feature.chooseCaffeType
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -31,7 +32,8 @@ fun ChooseCaffeType() {
     LazyColumn(
         modifier = Modifier
             .statusBarsPadding()
-            .fillMaxWidth(),
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         item {
 
@@ -44,9 +46,12 @@ fun ChooseCaffeType() {
                 )
             )
             SelectedCaffeType(pagerState, modifier = Modifier.padding(top = 56.dp))
+
+        }
+        item {
             ChooseCaffeTypeBottomButton(
                 Modifier
-                    .padding(top = 32.dp)
+                    .padding(vertical = 32.dp)
                     .navigationBarsPadding(),
                 onClick = { navController.navigate(Route.CustomizedCaffeScreen(pagerState.currentPage)) }
             )

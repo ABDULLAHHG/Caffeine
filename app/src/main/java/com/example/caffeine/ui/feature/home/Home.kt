@@ -6,6 +6,8 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -32,18 +34,22 @@ fun Home(
 ) {
     val navController = LocalNavController.current
     LazyColumn(
-        modifier = Modifier.statusBarsPadding(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.statusBarsPadding().fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         item() {
             HomeUpBar(Modifier.statusBarsPadding())
             HomeGreetings(Modifier.padding(bottom = 33.dp))
             HomeFlyingGhost()
+
+        }
+        item(){
             BottomButton(
                 onClick = {
                     navController.navigate(Route.ChooseCaffeTypeScreen)
                 },
-                modifier = Modifier.navigationBarsPadding()
+                modifier = Modifier.navigationBarsPadding().padding(bottom = 32.dp)
             )
         }
     }

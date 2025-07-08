@@ -3,9 +3,11 @@ package com.example.caffeine.ui.feature.customizedCaffe
 import androidx.compose.animation.core.animateSizeAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -71,7 +73,9 @@ fun CustomizedCaffe(
     LazyColumn(
         Modifier
             .background(Color.White)
-            .statusBarsPadding()
+            .fillMaxSize()
+            .statusBarsPadding(),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
 
         item {
@@ -135,11 +139,14 @@ fun CustomizedCaffe(
                         }
                     }
                 )
+            }
+        }
+            item(){
 
                 ChooseCaffeTypeBottomButton(
                     modifier = Modifier
                         .navigationBarsPadding()
-                        .padding(top = 32.dp)
+                        .padding(vertical = 32.dp)
                 ) {
                     navController.navigate(
                         Route.CoffeeLoadingScreen(
@@ -151,7 +158,6 @@ fun CustomizedCaffe(
                         )
                     )
                 }
-            }
         }
     }
 

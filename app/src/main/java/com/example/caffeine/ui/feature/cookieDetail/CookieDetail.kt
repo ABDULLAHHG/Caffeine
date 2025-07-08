@@ -30,11 +30,14 @@ import com.example.caffeine.designSystem.theme.snigletFamily
 import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
 import com.example.caffeine.ui.feature.coffeeReady.component.CaffeReadyUpBar
 import com.example.caffeine.ui.feature.cookies.cookiesType
+import com.example.caffeine.ui.feature.navigation.LocalNavController
+import com.example.caffeine.ui.feature.navigation.Route
 
 @Composable
 fun CookieDetail(
     cookie: cookiesType
 ) {
+    val navController = LocalNavController.current
     LazyColumn(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -43,14 +46,16 @@ fun CookieDetail(
         item {
             Column() {
                 CaffeReadyUpBar(
-                    onClick = {},
+                    onClick = { navController.navigate(Route.Home) },
                     modifier = Modifier.statusBarsPadding()
                 )
 
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = 24.dp).fillMaxWidth()
+                    modifier = Modifier
+                        .padding(top = 24.dp)
+                        .fillMaxWidth()
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.coffee_beans),
@@ -111,10 +116,13 @@ fun CookieDetail(
 
             }
         }
-        item(){
+        item() {
             CookieDetailBottomButton(
-                modifier = Modifier.navigationBarsPadding()
-                    .fillMaxWidth()
+                modifier = Modifier
+                    .navigationBarsPadding().padding(bottom = 32.dp)
+                    .fillMaxWidth(),
+                onClick = { navController.navigate(Route.Home) }
+
             )
         }
 
@@ -125,9 +133,9 @@ fun CookieDetail(
 
 
 @Composable
-fun CookieDetailBottomButton(modifier: Modifier = Modifier) {
+fun CookieDetailBottomButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        PrimaryButton() {
+        PrimaryButton(onClick = { onClick() }) {
             CaffeTextBold(
                 "Thank youuu",
                 fontSize = 16,

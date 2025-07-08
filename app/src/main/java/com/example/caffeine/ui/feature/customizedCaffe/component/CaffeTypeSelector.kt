@@ -19,12 +19,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -53,7 +54,7 @@ fun CaffeTypeSelector(
 
             Indicator(
                 Modifier
-                    .offset (x = offset.value)
+                    .offset(x = offset.value)
                     .zIndex(-1f)
             )
         }
@@ -110,20 +111,19 @@ private fun OneCharacterText(
 
 @Composable
 fun Indicator(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
-    Box(
-        modifier = modifier
-            .shadow(
-                elevation = 16.dp,
-                shape = CircleShape,
-                ambientColor = Color(0x80B94B23),
-                spotColor = Color(0x80B94B23)
-            )
-            .clip(CircleShape)
-            .background(Color(0xFF7C351B))
-            .size(40.dp),
-        contentAlignment = Alignment.Center
+    Box(            modifier = modifier
     ) {
-        content()
+        Box(Modifier
+                .background(Color(0xFF7C351B) , shape = CircleShape)
+                .size(40.dp),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Blur(Modifier.zIndex(-999f))
+            content()
+
+
+        }
     }
 }
 
@@ -140,6 +140,29 @@ fun SelectorBackground(modifier: Modifier = Modifier, content: @Composable () ->
     ) {
         content()
     }
+}
+
+
+@Composable
+fun Blur(modifier: Modifier = Modifier) {
+    Box(
+        modifier = Modifier
+            .offset(y = 6.dp)
+            .size(45.dp)
+            .clip(CircleShape)
+            .background(
+                brush = Brush.radialGradient(
+                    listOf(
+                        Color(0x80B94B23).copy(
+                            alpha = 0.5f
+                        ),
+                        Color(0x80B94B23).copy(alpha = 0.5f * 0.7f),
+                        Color(0x80B94B23).copy(alpha = 0.5f * 0.01f)
+                    )
+                )
+            )
+            .blur(radius = 16.dp)
+    )
 }
 
 

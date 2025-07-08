@@ -12,6 +12,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,9 +37,10 @@ fun CaffeSizeSelector(
     modifier: Modifier = Modifier,
     selected: CoffeeBeansLevel = CoffeeBeansLevel.Medium
 ) {
+    val offset = remember { mutableStateOf(0.dp) }
     SelectorBackground(modifier) {
-        Crossfade(targetState = selected, label = "CaffeSizeIndicator",) { targetType ->
-            val offset = when (targetType) {
+        Crossfade(targetState = selected, label = "CaffeSizeIndicator", animationSpec = tween(300)) { targetType ->
+            offset.value = when (targetType) {
                 CoffeeBeansLevel.Low -> (-48).dp
                 CoffeeBeansLevel.Medium -> 0.dp
                 CoffeeBeansLevel.High -> 48.dp
@@ -45,7 +48,7 @@ fun CaffeSizeSelector(
 
             Indicator(
                 Modifier
-                    .offset(x = offset)
+                    .offset(x = offset.value)
                     .zIndex(-1f)
             ) {
                 Icon(

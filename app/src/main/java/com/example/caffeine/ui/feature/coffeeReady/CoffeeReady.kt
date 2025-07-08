@@ -61,6 +61,7 @@ fun CoffeeReady(
                 modifier = Modifier
                     .fillMaxWidth()
                     .navigationBarsPadding()
+                    .padding(bottom = 32.dp)
             )
         }
     }
