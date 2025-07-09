@@ -17,10 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
+import com.example.caffeine.designSystem.component.text.CaffeTextBold
 import com.example.caffeine.ui.feature.coffeeReady.component.CaffeReadyBottomButton
 import com.example.caffeine.ui.feature.coffeeReady.component.CaffeReadyUpBar
-import com.example.caffeine.ui.feature.coffeeReady.component.CupWithLid
+import com.example.caffeine.ui.feature.coffeeReady.component.CookieSwitch
+import com.example.caffeine.ui.feature.coffeeReady.component.CupWithCover
 import com.example.caffeine.ui.feature.coffeeReady.component.SnackBar
 import com.example.caffeine.ui.feature.navigation.LocalNavController
 import com.example.caffeine.ui.feature.navigation.Route
@@ -50,7 +51,7 @@ fun CoffeeReady(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.height((cupHeight.dp.value + logoHeight.dp.value * 2).dp)
             ) {
-                CupWithLid(
+                CupWithCover(
                     cupWidth,
                     cupHeight,
                     cupSizeInML,

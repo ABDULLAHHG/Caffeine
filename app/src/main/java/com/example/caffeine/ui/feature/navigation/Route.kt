@@ -1,6 +1,6 @@
 package com.example.caffeine.ui.feature.navigation
 
-import com.example.caffeine.ui.feature.cookies.cookiesType
+import com.example.caffeine.ui.feature.cookies.CookiesType
 import kotlinx.serialization.Serializable
 
 sealed interface Route {
@@ -38,7 +38,7 @@ sealed interface Route {
 
     @Serializable
     data class CookieDetail(
-        val cookie : cookiesType
+        val cookie : CookiesType
     ) : Route
 
 

@@ -13,8 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.caffeine.ui.component.CaffeCup
 import com.example.caffeine.ui.component.CaffeineUpBar
-import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
+import com.example.caffeine.designSystem.component.text.CaffeTextBold
+import com.example.caffeine.ui.feature.loading.component.CaffeTimeText
+import com.example.caffeine.ui.feature.loading.component.DraggableBoxWithSlider
 import com.example.caffeine.ui.feature.navigation.LocalNavController
 
 @Composable
@@ -72,15 +75,13 @@ fun Loading(
             )
 
             Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
-                CaffeTimeText("CO")
-                Spacer(Modifier.width(12.dp))
-                CaffeTimeText(":", fontColor = Color(0x1F1F1F1F))
-                Spacer(Modifier.width(12.dp))
-                CaffeTimeText("FF")
-                Spacer(Modifier.width(12.dp))
-                CaffeTimeText(":", fontColor = Color(0x1F1F1F1F))
-                Spacer(Modifier.width(12.dp))
-                CaffeTimeText("EE")
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    CaffeTimeText("CO")
+                    CaffeTimeText(":", fontColor = Color(0x1F1F1F1F))
+                    CaffeTimeText("FF")
+                    CaffeTimeText(":", fontColor = Color(0x1F1F1F1F))
+                    CaffeTimeText("EE")
+                }
             }
             Spacer(Modifier.height(32.dp))
         }

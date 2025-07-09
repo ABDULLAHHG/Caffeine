@@ -1,4 +1,4 @@
-package com.example.caffeine.ui.feature.loading
+package com.example.caffeine.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -14,7 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.caffeine.R
-import com.example.caffeine.ui.feature.customizedCaffe.component.CaffeRegularText
+import com.example.caffeine.designSystem.component.text.CaffeRegularText
 
 @Composable
 fun CaffeCup(

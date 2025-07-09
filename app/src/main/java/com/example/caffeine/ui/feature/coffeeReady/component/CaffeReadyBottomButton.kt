@@ -13,7 +13,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.example.caffeine.R
 import com.example.caffeine.designSystem.component.PrimaryButton
-import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
+import com.example.caffeine.designSystem.component.text.CaffeTextBold
 
 @Composable
 fun CaffeReadyBottomButton(onClick: () -> Unit, modifier: Modifier = Modifier) {

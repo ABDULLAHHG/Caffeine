@@ -18,7 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.caffeine.R
 import com.example.caffeine.ui.component.CaffeineUpBar
-import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
+import com.example.caffeine.designSystem.component.text.CaffeTextBold
 
 @Composable
 fun CustomizedCaffeUpBar(label:String, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {

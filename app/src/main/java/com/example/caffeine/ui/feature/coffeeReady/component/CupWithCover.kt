@@ -8,6 +8,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,10 +26,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.caffeine.R
-import com.example.caffeine.ui.feature.loading.CaffeCup
+import com.example.caffeine.ui.component.CaffeCup
 
 @Composable
-fun CupWithLid(
+fun CupWithCover(
     cupWidth: Int,
     cupHeight: Int,
     cupSizeInML: String,
@@ -72,6 +73,7 @@ fun CupWithLid(
                 modifier = Modifier
                     .size((cupWidth * 1.05).dp, (logoHeight.dp.value * 2).dp)
                     .zIndex(1f)
+                    .offset(y = 15.dp)
                     .align(Alignment.TopCenter)
                     .graphicsLayer {
                         transformOrigin = TransformOrigin(0.5f, 1f)

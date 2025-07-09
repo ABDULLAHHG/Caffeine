@@ -1,4 +1,4 @@
-package com.example.caffeine.ui.feature.loading
+package com.example.caffeine.ui.feature.loading.component
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

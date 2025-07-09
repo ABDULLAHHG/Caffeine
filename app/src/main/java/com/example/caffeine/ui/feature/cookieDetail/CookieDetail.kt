@@ -27,15 +27,15 @@ import androidx.compose.ui.unit.sp
 import com.example.caffeine.R
 import com.example.caffeine.designSystem.component.PrimaryButton
 import com.example.caffeine.designSystem.theme.snigletFamily
-import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
+import com.example.caffeine.designSystem.component.text.CaffeTextBold
 import com.example.caffeine.ui.feature.coffeeReady.component.CaffeReadyUpBar
-import com.example.caffeine.ui.feature.cookies.cookiesType
+import com.example.caffeine.ui.feature.cookies.CookiesType
 import com.example.caffeine.ui.feature.navigation.LocalNavController
 import com.example.caffeine.ui.feature.navigation.Route
 
 @Composable
 fun CookieDetail(
-    cookie: cookiesType
+    cookie: CookiesType
 ) {
     val navController = LocalNavController.current
     LazyColumn(

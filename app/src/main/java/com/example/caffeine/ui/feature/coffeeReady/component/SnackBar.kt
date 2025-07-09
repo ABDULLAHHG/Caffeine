@@ -24,8 +24,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.example.caffeine.R
-import com.example.caffeine.ui.feature.chooseCaffeType.CaffeTextBold
-import com.example.caffeine.ui.feature.customizedCaffe.component.Indicator
+import com.example.caffeine.designSystem.component.text.CaffeTextBold
+import com.example.caffeine.ui.component.Indicator
 
 @Composable
 fun SnackBar(modifier: Modifier = Modifier) {

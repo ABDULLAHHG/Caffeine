@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,13 +28,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.caffeine.R
 import com.example.caffeine.ui.feature.chooseCaffeType.CaffeType
-import com.example.caffeine.ui.feature.chooseCaffeType.ChooseCaffeTypeBottomButton
-import com.example.caffeine.ui.feature.customizedCaffe.component.CaffeRegularText
+import com.example.caffeine.ui.component.ContinueBottomButton
+import com.example.caffeine.designSystem.component.text.CaffeRegularText
 import com.example.caffeine.ui.feature.customizedCaffe.component.CaffeSizeSelector
 import com.example.caffeine.ui.feature.customizedCaffe.component.CaffeTypeSelector
 import com.example.caffeine.ui.feature.customizedCaffe.component.CoffeeBeansLevel
 import com.example.caffeine.ui.feature.customizedCaffe.component.CoffeeBeansLevelAnimation
-import com.example.caffeine.ui.feature.customizedCaffe.component.CupeSizeType
+import com.example.caffeine.ui.feature.customizedCaffe.component.CupSizeType
 import com.example.caffeine.ui.feature.customizedCaffe.component.CustomizedCaffeUpBar
 import com.example.caffeine.ui.feature.navigation.LocalNavController
 import com.example.caffeine.ui.feature.navigation.Route
@@ -46,28 +44,28 @@ fun CustomizedCaffe(
     index: Int
 ) {
     val navController = LocalNavController.current
-    var selectedCoffeeSizeType by remember { mutableStateOf(CupeSizeType.Medium) }
+    var selectedCoffeeSizeType by remember { mutableStateOf(CupSizeType.Medium) }
     var selectedBeansLevel by remember { mutableStateOf(CoffeeBeansLevel.Low) }
     val caffeType = CaffeType.entries[index].name
 
     val animatedCupSize by animateSizeAsState(
         targetValue = when (selectedCoffeeSizeType) {
-            CupeSizeType.Small -> Size(160f, 190f)
-            CupeSizeType.Medium -> Size(200f, 250f)
-            CupeSizeType.Large -> Size(250f, 300f)
+            CupSizeType.Small -> Size(160f, 190f)
+            CupSizeType.Medium -> Size(200f, 250f)
+            CupSizeType.Large -> Size(250f, 300f)
         }
     )
     val animateLogoSize by animateSizeAsState(
         when (selectedCoffeeSizeType) {
-            CupeSizeType.Small -> Size(40f, 40f)
-            CupeSizeType.Medium -> Size(64f, 64f)
-            CupeSizeType.Large -> Size(64f, 64f)
+            CupSizeType.Small -> Size(40f, 40f)
+            CupSizeType.Medium -> Size(66f, 66f)
+            CupSizeType.Large -> Size(66f, 66f)
         }
     )
     val cupSizeInML = when (selectedCoffeeSizeType) {
-        CupeSizeType.Small -> "150 ML"
-        CupeSizeType.Medium -> "200 ML"
-        CupeSizeType.Large -> "400 ML"
+        CupSizeType.Small -> "150 ML"
+        CupSizeType.Medium -> "200 ML"
+        CupSizeType.Large -> "400 ML"
     }
 
 
@@ -113,16 +111,16 @@ fun CustomizedCaffe(
                     selected = selectedCoffeeSizeType,
                     onSelected = {
                         selectedCoffeeSizeType = when (it) {
-                            CupeSizeType.Small -> {
-                                CupeSizeType.Small
+                            CupSizeType.Small -> {
+                                CupSizeType.Small
                             }
 
-                            CupeSizeType.Medium -> {
-                                CupeSizeType.Medium
+                            CupSizeType.Medium -> {
+                                CupSizeType.Medium
                             }
 
-                            CupeSizeType.Large -> {
-                                CupeSizeType.Large
+                            CupSizeType.Large -> {
+                                CupSizeType.Large
                             }
                         }
                     }
@@ -151,7 +149,7 @@ fun CustomizedCaffe(
         }
         item() {
 
-            ChooseCaffeTypeBottomButton(
+            ContinueBottomButton(
                 modifier = Modifier
                     .navigationBarsPadding()
                     .padding(vertical = 32.dp)

@@ -1,4 +1,4 @@
-package com.example.caffeine.ui.feature.coffeeReady
+package com.example.caffeine.ui.feature.coffeeReady.component
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -38,19 +39,18 @@ fun CookieSwitch(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    var direction by remember { mutableStateOf(1f) }
+    var direction by remember { mutableFloatStateOf(1f) }
 
     val offset by animateDpAsState(
-        targetValue = if (direction == 1f) 40.dp else -1.dp,
+        targetValue = if (direction != 1f) (-1).dp else 40.dp,
         animationSpec = tween(300),
     )
 
     val backgroundColor by animateColorAsState(
-        targetValue = if (direction == 1f) Color(0xFFFFEEE7) else Color(0xFF7C351B),
+        targetValue = if (direction != 1f) Color(0xFF7C351B) else Color(0xFFFFEEE7),
         animationSpec = tween(300),
     )
 
-    val alignment = if (direction == 1f) Alignment.CenterStart else Alignment.CenterEnd
 
     Box(
         modifier = modifier
@@ -79,7 +79,6 @@ fun CookieSwitch(
 
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = alignment
         ) {
             SwitchStatus(direction = direction)
         }
@@ -92,8 +91,8 @@ fun SwitchStatus(
     direction: Float,
     modifier: Modifier = Modifier
 ) {
-    val label = if (direction == 1f) "ON" else "Off"
-    val textAlign = if (direction == 1f) TextAlign.Start else TextAlign.End
+    val label = if (direction != 1f) "ON" else "OFF"
+    val textAlign = if (direction != 1f) TextAlign.End else TextAlign.Start
 
     AnimatedContent(
         targetState = label,
@@ -106,7 +105,7 @@ fun SwitchStatus(
             modifier = modifier
                 .padding(13.dp)
                 .fillMaxWidth(),
-            color = Color(0x991F1F1F),
+            color = if(direction != 1f ) Color(0x99FFFFFF) else Color(0x99000000),
             textAlign = textAlign,
         )
     }

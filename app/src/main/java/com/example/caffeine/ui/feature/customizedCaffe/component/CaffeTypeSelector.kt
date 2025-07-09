@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,10 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,25 +25,30 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.example.caffeine.designSystem.theme.urbanistFamily
+import com.example.caffeine.ui.component.Indicator
 
-enum class CupeSizeType {
+enum class CupSizeType {
     Small, Medium, Large
 }
 
 @Composable
 fun CaffeTypeSelector(
-    onSelected: (CupeSizeType) -> Unit,
+    onSelected: (CupSizeType) -> Unit,
     modifier: Modifier = Modifier,
-    selected: CupeSizeType = CupeSizeType.Medium
+    selected: CupSizeType = CupSizeType.Medium
 ) {
     val offset = remember { mutableStateOf(0.dp) }
     SelectorBackground(modifier) {
-        Crossfade(targetState = selected, label = "CaffeTypeIndicator", animationSpec = tween(300)) { targetType ->
+        Crossfade(
+            targetState = selected,
+            label = "CaffeTypeIndicator",
+            animationSpec = tween(300)
+        ) { targetType ->
             offset.value =
                 when (targetType) {
-                    CupeSizeType.Small -> (-48).dp
-                    CupeSizeType.Medium -> 0.dp
-                    CupeSizeType.Large -> 48.dp
+                    CupSizeType.Small -> (-48).dp
+                    CupSizeType.Medium -> 0.dp
+                    CupSizeType.Large -> 48.dp
                 }
 
 
@@ -62,18 +62,18 @@ fun CaffeTypeSelector(
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             OneCharacterText(
                 "S",
-                onClick = { onSelected(CupeSizeType.Small) },
-                isSelected = selected == CupeSizeType.Small,
+                onClick = { onSelected(CupSizeType.Small) },
+                isSelected = selected == CupSizeType.Small,
             )
             OneCharacterText(
                 "M",
-                onClick = { onSelected(CupeSizeType.Medium) },
-                isSelected = selected == CupeSizeType.Medium
+                onClick = { onSelected(CupSizeType.Medium) },
+                isSelected = selected == CupSizeType.Medium
             )
             OneCharacterText(
                 "L",
-                onClick = { onSelected(CupeSizeType.Large) },
-                isSelected = selected == CupeSizeType.Large
+                onClick = { onSelected(CupSizeType.Large) },
+                isSelected = selected == CupSizeType.Large
             )
         }
     }
@@ -107,26 +107,6 @@ private fun OneCharacterText(
     }
 }
 
-// reusable components
-
-@Composable
-fun Indicator(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
-    Box(            modifier = modifier
-    ) {
-        Box(Modifier
-                .background(Color(0xFF7C351B) , shape = CircleShape)
-                .size(40.dp),
-            contentAlignment = Alignment.Center
-        ) {
-
-            Blur(Modifier.zIndex(-999f))
-            content()
-
-
-        }
-    }
-}
-
 
 
 @Composable
@@ -143,26 +123,5 @@ fun SelectorBackground(modifier: Modifier = Modifier, content: @Composable () ->
 }
 
 
-@Composable
-fun Blur(modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
-            .offset(y = 6.dp)
-            .size(45.dp)
-            .clip(CircleShape)
-            .background(
-                brush = Brush.radialGradient(
-                    listOf(
-                        Color(0x80B94B23).copy(
-                            alpha = 0.5f
-                        ),
-                        Color(0x80B94B23).copy(alpha = 0.5f * 0.7f),
-                        Color(0x80B94B23).copy(alpha = 0.5f * 0.01f)
-                    )
-                )
-            )
-            .blur(radius = 16.dp)
-    )
-}
 
 
